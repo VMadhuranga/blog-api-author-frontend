@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
-import ContentGenerator from "../content-generator/ContentGenerator";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
 
 export default function Posts() {
   const [isNewPost, setIsNewPost] = useState(false);
@@ -14,7 +13,7 @@ export default function Posts() {
     <section>
       <h1>{isNewPost ? "New post" : "Posts"}</h1>
       {isNewPost ? (
-        <ContentGenerator />
+        <Outlet />
       ) : (
         <article>
           {posts.length ? (
