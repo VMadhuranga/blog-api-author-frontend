@@ -8,7 +8,9 @@ import {
 import App from "./App.jsx";
 import ErrorPage from "./components/error-page/ErrorPage.jsx";
 import AuthorLogin from "./components/author-login/AuthorLogin.jsx";
+import Posts from "./components/posts/Posts.jsx";
 import authorLoginAction from "./actions/author-login-action.js";
+import postsLoader from "./loaders/posts-loader.js";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -31,6 +33,11 @@ const router = createBrowserRouter([
 
           return redirect("/author/posts");
         },
+      },
+      {
+        path: "posts",
+        element: <Posts />,
+        loader: postsLoader,
       },
     ],
   },
