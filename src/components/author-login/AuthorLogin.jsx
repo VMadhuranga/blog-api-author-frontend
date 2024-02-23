@@ -1,7 +1,7 @@
 import { Form, useActionData } from "react-router-dom";
 
 export default function AuthorLogin() {
-  const error = useActionData();
+  const errors = useActionData();
 
   return (
     <section>
@@ -10,16 +10,16 @@ export default function AuthorLogin() {
         <div>
           <label htmlFor="user_name">User name: </label>
           <input type="text" name="user_name" id="user_name" required />
-          {error &&
-            error.data
+          {errors &&
+            errors.data
               .filter((error) => error.path === "user_name")
               .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
         <div>
           <label htmlFor="password">Password: </label>
           <input type="text" name="password" id="password" required />
-          {error &&
-            error.data
+          {errors &&
+            errors.data
               .filter((error) => error.path === "password")
               .map((error, index) => <span key={index}>{error.msg}</span>)}
         </div>
