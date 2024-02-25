@@ -20,6 +20,7 @@ import commentsLoader from "./loaders/comments-loader.js";
 import createCommentAction from "./actions/create-comment-action.js";
 import editPostAction from "./actions/edit-post-action.js";
 import deletePostAction from "./actions/delete-posts-action.js";
+import deleteCommentAction from "./actions/delete-comment-action.js";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -99,16 +100,25 @@ const router = createBrowserRouter([
               return commentsLoader(params);
             },
             action: async ({ params, request }) => {
-              const formData = await request.formData();
-              const formDataObj = Object.fromEntries(formData);
+              if (request.method === "POST") {
+                const formData = await request.formData();
+                const formDataObj = Object.fromEntries(formData);
 
-              const errors = await createCommentAction(params, formDataObj);
+                const errors = await createCommentAction(params, formDataObj);
 
-              if (errors) {
-                return errors;
+                if (errors) {
+                  return errors;
+                }
+
+                return redirect(`/author/posts/${params.post_id}`);
               }
 
-              return redirect(`/author/posts/${params.post_id}`);
+              if (request.method === "DELETE") {
+                const commentId = (await request.formData()).get("comment_id");
+                await deleteCommentAction(params, commentId);
+
+                return redirect(`/author/posts/${params.post_id}`);
+              }
             },
           },
         ],
