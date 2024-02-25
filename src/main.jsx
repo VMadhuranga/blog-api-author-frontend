@@ -19,6 +19,7 @@ import postLoader from "./loaders/post-loader.js";
 import commentsLoader from "./loaders/comments-loader.js";
 import createCommentAction from "./actions/create-comment-action.js";
 import editPostAction from "./actions/edit-post-action.js";
+import deletePostAction from "./actions/delete-posts-action.js";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -72,16 +73,23 @@ const router = createBrowserRouter([
           return postLoader(params);
         },
         action: async ({ request, params }) => {
-          const formData = await request.formData();
-          const formDataObj = Object.fromEntries(formData);
+          if (request.method === "PUT") {
+            const formData = await request.formData();
+            const formDataObj = Object.fromEntries(formData);
 
-          const error = await editPostAction(params, formDataObj);
+            const error = await editPostAction(params, formDataObj);
 
-          if (error) {
-            return error;
+            if (error) {
+              return error;
+            }
+
+            return redirect(`/author/posts/${params.post_id}`);
           }
 
-          return redirect(`/author/posts/${params.post_id}`);
+          if (request.method === "DELETE") {
+            await deletePostAction(params);
+            return redirect("/author/posts");
+          }
         },
         children: [
           {
@@ -95,6 +103,7 @@ const router = createBrowserRouter([
               const formDataObj = Object.fromEntries(formData);
 
               const errors = await createCommentAction(params, formDataObj);
+
               if (errors) {
                 return errors;
               }
