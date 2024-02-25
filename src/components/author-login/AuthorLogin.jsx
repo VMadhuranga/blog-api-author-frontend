@@ -17,7 +17,7 @@ export default function AuthorLogin() {
         </div>
         <div>
           <label htmlFor="password">Password: </label>
-          <input type="text" name="password" id="password" required />
+          <input type="password" name="password" id="password" required />
           {errors &&
             errors.data
               .filter((error) => error.path === "password")
