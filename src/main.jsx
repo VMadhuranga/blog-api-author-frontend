@@ -18,6 +18,7 @@ import createPostAction from "./actions/create-post-action.js";
 import postLoader from "./loaders/post-loader.js";
 import commentsLoader from "./loaders/comments-loader.js";
 import createCommentAction from "./actions/create-comment-action.js";
+import editPostAction from "./actions/edit-post-action.js";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -69,6 +70,18 @@ const router = createBrowserRouter([
         element: <Post />,
         loader: ({ params }) => {
           return postLoader(params);
+        },
+        action: async ({ request, params }) => {
+          const formData = await request.formData();
+          const formDataObj = Object.fromEntries(formData);
+
+          const error = await editPostAction(params, formDataObj);
+
+          if (error) {
+            return error;
+          }
+
+          return redirect(`/author/posts/${params.post_id}`);
         },
         children: [
           {
