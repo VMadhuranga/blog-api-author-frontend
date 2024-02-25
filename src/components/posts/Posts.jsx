@@ -16,7 +16,7 @@ export default function Posts() {
         <Outlet />
       ) : (
         <article>
-          {posts.length ? (
+          {posts.length > 0 ? (
             <ul>
               {posts.map((post) => (
                 <li key={post._id}>
