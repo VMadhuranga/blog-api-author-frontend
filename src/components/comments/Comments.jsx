@@ -42,6 +42,14 @@ export default function Comments() {
                 <li key={comment._id}>
                   <p>{comment.commentedUser}</p>
                   <p>{comment.text}</p>
+                  <Form method="delete">
+                    <input
+                      type="hidden"
+                      name="comment_id"
+                      value={comment._id}
+                    />
+                    <button type="submit">Delete comment</button>
+                  </Form>
                 </li>
               );
             })}
