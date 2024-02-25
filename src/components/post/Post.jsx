@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
 import ContentGenerator from "../content-generator/ContentGenerator";
 
 export default function Post() {
@@ -31,6 +31,9 @@ export default function Post() {
             {isEditPost ? "Cancel" : "Edit post"}
           </button>
         </div>
+        <Form method="delete">
+          <button type="submit">Delete post</button>
+        </Form>
       </section>
       <Outlet />
     </>
