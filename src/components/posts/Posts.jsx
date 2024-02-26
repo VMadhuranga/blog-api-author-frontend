@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+import unescape from "../../utils/unescape";
 
 export default function Posts() {
   const [isNewPost, setIsNewPost] = useState(false);
@@ -21,7 +22,7 @@ export default function Posts() {
               {posts.map((post) => (
                 <li key={post._id}>
                   <Link to={`${post._id}`}>
-                    {post.title}
+                    {unescape(post.title)}
                     <span>
                       {new Date(post.createdDate).toLocaleDateString()}
                     </span>
