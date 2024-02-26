@@ -1,4 +1,5 @@
 import { Form, useActionData, useLoaderData } from "react-router-dom";
+import unescape from "../../utils/unescape";
 
 export default function Comments() {
   const comments = useLoaderData();
@@ -40,8 +41,8 @@ export default function Comments() {
             {comments.map((comment) => {
               return (
                 <li key={comment._id}>
-                  <p>{comment.commentedUser}</p>
-                  <p>{comment.text}</p>
+                  <p>{unescape(comment.commentedUser)}</p>
+                  <p>{unescape(comment.text)}</p>
                   <Form method="delete">
                     <input
                       type="hidden"
