@@ -1,0 +1,27 @@
+.postComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postComponent a {
+  color: white;
+
+  &:hover {
+    color: deepskyblue;
+  }
+}
+
+.createdDate {
+  font-size: 0.9rem;
+}
+
+.postContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postContent li {
+  margin-left: 20px;
+}
