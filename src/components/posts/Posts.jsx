@@ -33,7 +33,7 @@ export default function Posts() {
           )}
         </article>
       )}
-      <div className={styles.buttonContainer}>
+      <div>
         <button
           onClick={handleCreateNewPost}
           type="button"
