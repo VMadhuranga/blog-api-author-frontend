@@ -11,3 +11,9 @@ main {
   margin: 0 auto;
   padding: 20px;
 }
+
+footer {
+  padding: 10px;
+  text-align: center;
+  background-color: #635985;
+}
