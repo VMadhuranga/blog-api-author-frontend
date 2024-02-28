@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form, useActionData } from "react-router-dom";
+import styles from "./ContentGenerator.module.css";
+import buttonStyles from "../../assets/stylesheets/button.module.css";
 
 export default function ContentGenerator({ method = "post", fieldsData }) {
   const [formFieldsData, setFormFieldsData] = useState(
@@ -28,7 +30,7 @@ export default function ContentGenerator({ method = "post", fieldsData }) {
   }
 
   return (
-    <Form method={method}>
+    <Form method={method} className={styles.contentGenerator}>
       <div>
         <label htmlFor="title">Title :</label>
         <input
@@ -61,34 +63,38 @@ export default function ContentGenerator({ method = "post", fieldsData }) {
             .map((error, index) => <span key={index}>{error.msg}</span>)}
       </div>
       <div>
-        <p>Publish :</p>
-        <label htmlFor="yes">
-          Yes{" "}
-          <input
-            type="radio"
-            name="publish"
-            id="yes"
-            value="yes"
-            checked={formFieldsData.isPublished}
-            onChange={handlePublishChange}
-            required
-          />
-        </label>
-        <label htmlFor="no">
-          No{" "}
-          <input
-            type="radio"
-            name="publish"
-            id="no"
-            value="no"
-            checked={!formFieldsData.isPublished}
-            onChange={handlePublishChange}
-            required
-          />
-        </label>
+        <p>
+          Publish :{" "}
+          <label htmlFor="yes">
+            Yes{" "}
+            <input
+              type="radio"
+              name="publish"
+              id="yes"
+              value="yes"
+              checked={formFieldsData.isPublished}
+              onChange={handlePublishChange}
+              required
+            />{" "}
+          </label>
+          <label htmlFor="no">
+            No{" "}
+            <input
+              type="radio"
+              name="publish"
+              id="no"
+              value="no"
+              checked={!formFieldsData.isPublished}
+              onChange={handlePublishChange}
+              required
+            />
+          </label>
+        </p>
       </div>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit" className={buttonStyles.primary}>
+          Submit
+        </button>
       </div>
     </Form>
   );
