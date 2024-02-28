@@ -4,6 +4,11 @@
   gap: 20px;
 }
 
+.buttonContainer {
+  display: flex;
+  margin-left: auto;
+}
+
 .postsList {
   list-style: none;
   display: flex;
