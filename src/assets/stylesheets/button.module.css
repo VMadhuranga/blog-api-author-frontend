@@ -1,0 +1,13 @@
+.primary {
+  background-color: #393053;
+  color: inherit;
+  font-size: inherit;
+  padding: 4px 6px;
+  font-weight: bold;
+  border: none;
+  border-radius: 2px;
+
+  &:hover {
+    background-color: #635985;
+  }
+}
