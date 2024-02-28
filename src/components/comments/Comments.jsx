@@ -1,19 +1,30 @@
-import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { useState } from "react";
+import { useActionData, useFetcher, useLoaderData } from "react-router-dom";
 import unescape from "../../utils/unescape";
 import styles from "./Comments.module.css";
 import buttonStyles from "../../assets/stylesheets/button.module.css";
 
 export default function Comments() {
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
   const comments = useLoaderData();
   const errors = useActionData();
+  const fetcher = useFetcher();
 
   return (
     <section className={styles.commentSection}>
       <h3>Comments</h3>
-      <Form method="post" className={styles.createCommentForm}>
+      <fetcher.Form method="post" className={styles.createCommentForm}>
         <div>
           <label htmlFor="user_name">Name :</label>
-          <input type="text" name="user_name" id="user_name" required />
+          <input
+            type="text"
+            name="user_name"
+            id="user_name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
           {errors &&
             errors.data
               .filter((error) => error.path === "user_name")
@@ -26,6 +37,8 @@ export default function Comments() {
             id="comment"
             cols="30"
             rows="10"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
             required
           ></textarea>
           {errors &&
@@ -38,7 +51,7 @@ export default function Comments() {
             Submit
           </button>
         </div>
-      </Form>
+      </fetcher.Form>
       <article>
         {comments.length > 0 ? (
           <ul className={styles.commentList}>
@@ -47,7 +60,7 @@ export default function Comments() {
                 <li key={comment._id}>
                   <p>{unescape(comment.commentedUser)} :</p>
                   <p>{unescape(comment.text)}</p>
-                  <Form method="delete">
+                  <fetcher.Form method="delete">
                     <input
                       type="hidden"
                       name="comment_id"
@@ -56,7 +69,7 @@ export default function Comments() {
                     <button type="submit" className={buttonStyles.primary}>
                       Delete comment
                     </button>
-                  </Form>
+                  </fetcher.Form>
                 </li>
               );
             })}
