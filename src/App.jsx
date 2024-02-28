@@ -10,7 +10,11 @@ function App() {
         <h1>Blog API</h1>
       </header>
       <main>
-        {navigation.state === "loading" ? <h3>Loading...</h3> : <Outlet />}
+        {navigation.state === "loading" ? (
+          <h3 className="loadingIndicator">Loading...</h3>
+        ) : (
+          <Outlet />
+        )}
       </main>
       <footer>
         <p>&copy; 2024 VMadhuranga</p>
