@@ -110,14 +110,14 @@ const router = createBrowserRouter([
                   return errors;
                 }
 
-                return redirect(`/author/posts/${params.post_id}`);
+                return null;
               }
 
               if (request.method === "DELETE") {
                 const commentId = (await request.formData()).get("comment_id");
                 await deleteCommentAction(params, commentId);
 
-                return redirect(`/author/posts/${params.post_id}`);
+                return null;
               }
             },
           },
