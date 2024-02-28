@@ -3,3 +3,11 @@ header {
   text-align: center;
   background-color: #635985;
 }
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 20px;
+}
