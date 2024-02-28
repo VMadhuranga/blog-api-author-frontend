@@ -1,0 +1,35 @@
+.postsComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.postsList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.postsList a {
+  color: inherit;
+
+  &:hover {
+    color: deepskyblue;
+  }
+}
+
+.postsList span {
+  font-size: 0.9rem;
+}
+
+.noPostMsg {
+  text-align: center;
+}
