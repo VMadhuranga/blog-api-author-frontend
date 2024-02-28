@@ -1,0 +1,66 @@
+.commentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.createCommentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.createCommentForm > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.createCommentForm input,
+.createCommentForm textarea {
+  padding: 4px 6px;
+  font-size: inherit;
+  background-color: #635985;
+  color: inherit;
+  border: none;
+  border-radius: 2px;
+
+  &:focus {
+    outline: 2px solid #635985;
+    outline-offset: 2px;
+  }
+}
+
+.createCommentForm textarea {
+  width: 100%;
+  height: 200px;
+  resize: none;
+  font-family: inherit;
+}
+
+.createCommentForm button {
+  align-self: self-end;
+}
+
+.commentList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.commentList li {
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.commentList li > :first-child {
+  font-size: 1rem;
+}
+
+.noCommentsMsg {
+  text-align: center;
+}
