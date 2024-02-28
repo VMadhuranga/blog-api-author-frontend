@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export default async function commentsLoader(params) {
+export default async function commentsLoader(baseUrl, params) {
   try {
     const response = await axios.get(
-      `http://localhost:3000/author/posts/${params.post_id}/comments`,
+      `${baseUrl}/author/posts/${params.post_id}/comments`,
       {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       },

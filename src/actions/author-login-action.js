@@ -1,11 +1,8 @@
 import axios from "axios";
 
-export default async function authorLoginAction(formData) {
+export default async function authorLoginAction(baseUrl, formData) {
   try {
-    const response = await axios.post(
-      "http://localhost:3000/author/login",
-      formData,
-    );
+    const response = await axios.post(`${baseUrl}/author/login`, formData);
 
     localStorage.setItem("token", response.data.token);
   } catch (error) {

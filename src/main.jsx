@@ -23,6 +23,7 @@ import deletePostAction from "./actions/delete-posts-action.js";
 import deleteCommentAction from "./actions/delete-comment-action.js";
 import "./index.css";
 
+const baseUrl = "https://blog-api-backend.adaptable.app";
 const router = createBrowserRouter([
   {
     path: "/author",
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         action: async ({ request }) => {
           const formData = await request.formData();
           const formDataObj = Object.fromEntries(formData);
-          const errors = await authorLoginAction(formDataObj);
+          const errors = await authorLoginAction(baseUrl, formDataObj);
 
           if (errors) {
             return errors;
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
       {
         path: "posts",
         element: <Posts />,
-        loader: postsLoader,
+        loader: () => postsLoader(baseUrl),
         children: [
           {
             index: true,
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
               const formData = await request.formData();
               const formDataObj = Object.fromEntries(formData);
 
-              const errors = await createPostAction(formDataObj);
+              const errors = await createPostAction(baseUrl, formDataObj);
 
               if (errors) {
                 return errors;
@@ -71,14 +72,14 @@ const router = createBrowserRouter([
         path: "posts/:post_id",
         element: <Post />,
         loader: ({ params }) => {
-          return postLoader(params);
+          return postLoader(baseUrl, params);
         },
         action: async ({ request, params }) => {
           if (request.method === "PUT") {
             const formData = await request.formData();
             const formDataObj = Object.fromEntries(formData);
 
-            const error = await editPostAction(params, formDataObj);
+            const error = await editPostAction(baseUrl, params, formDataObj);
 
             if (error) {
               return error;
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
           }
 
           if (request.method === "DELETE") {
-            await deletePostAction(params);
+            await deletePostAction(baseUrl, params);
             return redirect("/author/posts");
           }
         },
@@ -97,14 +98,18 @@ const router = createBrowserRouter([
             index: true,
             element: <Comments />,
             loader: ({ params }) => {
-              return commentsLoader(params);
+              return commentsLoader(baseUrl, params);
             },
             action: async ({ params, request }) => {
               if (request.method === "POST") {
                 const formData = await request.formData();
                 const formDataObj = Object.fromEntries(formData);
 
-                const errors = await createCommentAction(params, formDataObj);
+                const errors = await createCommentAction(
+                  baseUrl,
+                  params,
+                  formDataObj,
+                );
 
                 if (errors) {
                   return errors;
@@ -115,7 +120,7 @@ const router = createBrowserRouter([
 
               if (request.method === "DELETE") {
                 const commentId = (await request.formData()).get("comment_id");
-                await deleteCommentAction(params, commentId);
+                await deleteCommentAction(baseUrl, params, commentId);
 
                 return null;
               }
