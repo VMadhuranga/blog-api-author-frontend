@@ -25,7 +25,7 @@ export default function Post() {
           <>
             <h2>{post.title}</h2>
             <p className={styles.createdDate}>
-              {new Date(post.createdDate).toLocaleDateString()}
+              {new Date(post.createdDate).toDateString()}
             </p>
             <p>{post.isPublished ? "Published" : "Unpublished"}</p>
             <article>

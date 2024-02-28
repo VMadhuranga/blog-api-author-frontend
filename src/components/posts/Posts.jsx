@@ -24,7 +24,7 @@ export default function Posts() {
               {posts.map((post) => (
                 <li key={post._id}>
                   <Link to={`${post._id}`}>{unescape(post.title)}</Link>
-                  <span>{new Date(post.createdDate).toLocaleDateString()}</span>
+                  <span>{new Date(post.createdDate).toDateString()}</span>
                 </li>
               ))}
             </ul>
