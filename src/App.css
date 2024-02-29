@@ -4,6 +4,11 @@ header {
   background-color: #635985;
 }
 
+.title {
+  text-decoration: none;
+  color: inherit;
+}
+
 main {
   flex: 1;
   width: 100%;
