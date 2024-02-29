@@ -11,6 +11,6 @@ export default async function postLoader(baseUrl, params) {
 
     return response.data;
   } catch (error) {
-    throw new Error(error.response.statusText);
+    throw new Error(error.response.data);
   }
 }

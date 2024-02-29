@@ -8,6 +8,6 @@ export default async function postsLoader(baseUrl) {
 
     return response.data;
   } catch (error) {
-    throw new Error(error.response.statusText);
+    throw new Error(error.response.data);
   }
 }
