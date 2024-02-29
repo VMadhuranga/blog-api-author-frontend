@@ -26,6 +26,10 @@ import "./index.css";
 const baseUrl = "https://blog-api-backend.adaptable.app";
 const router = createBrowserRouter([
   {
+    path: "/",
+    loader: () => redirect("/author"),
+  },
+  {
     path: "/author",
     element: <App />,
     errorElement: <ErrorPage />,
