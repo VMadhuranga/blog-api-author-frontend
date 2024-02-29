@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from "react-router-dom";
+import { Link, Outlet, useNavigation } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -7,7 +7,11 @@ function App() {
   return (
     <>
       <header>
-        <h1>Blog API</h1>
+        <h1>
+          <Link to={"/author/posts"} className="title">
+            Blog API
+          </Link>
+        </h1>
       </header>
       <main>
         {navigation.state === "loading" ? (
