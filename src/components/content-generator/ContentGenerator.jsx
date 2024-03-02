@@ -7,8 +7,8 @@ import buttonStyles from "../../assets/stylesheets/button.module.css";
 export default function ContentGenerator({ method = "post", fieldsData }) {
   const [formFieldsData, setFormFieldsData] = useState(
     fieldsData || {
-      title: "Post title",
-      content: "Post content",
+      title: "",
+      content: "",
       isPublished: false,
     },
   );
