@@ -32,6 +32,22 @@
   font-family: inherit;
 }
 
+.contentGenerator input[type="radio"] {
+  appearance: none;
+  height: 12px;
+  background-color: white;
+  margin-right: 2px;
+  outline: none;
+  border: none;
+  border-radius: 50px;
+
+  &:checked {
+    background-color: #635985;
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+}
+
 .contentGenerator button {
   align-self: self-start;
 }
