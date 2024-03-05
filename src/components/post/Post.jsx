@@ -47,11 +47,13 @@ export default function Post() {
             {isEditPost ? "Cancel" : "Edit post"}
           </button>
         </div>
-        <Form method="delete">
-          <button type="submit" className={buttonStyles.primary}>
-            Delete post
-          </button>
-        </Form>
+        {!isEditPost && (
+          <Form method="delete">
+            <button type="submit" className={buttonStyles.primary}>
+              Delete post
+            </button>
+          </Form>
+        )}
       </section>
       <Outlet />
     </>
