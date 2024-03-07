@@ -11,10 +11,19 @@ export default function Comments() {
   const errors = useActionData();
   const fetcher = useFetcher();
 
+  function handleFormSubmit() {
+    setName("");
+    setComment("");
+  }
+
   return (
     <section className={styles.commentSection}>
       <h3>Comments</h3>
-      <fetcher.Form method="post" className={styles.createCommentForm}>
+      <fetcher.Form
+        method="post"
+        className={styles.createCommentForm}
+        onSubmit={handleFormSubmit}
+      >
         <div>
           <label htmlFor="user_name">Name :</label>
           <input
