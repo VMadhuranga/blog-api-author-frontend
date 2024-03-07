@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
 import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import PropTypes from "prop-types";
 import unescape from "../../utils/unescape";
 import ContentGenerator from "../content-generator/ContentGenerator";
 import styles from "./Post.module.css";
@@ -29,7 +32,37 @@ export default function Post() {
             </p>
             <p>{post.isPublished ? "Published" : "Unpublished"}</p>
             <article>
-              <Markdown skipHtml className={styles.postContent}>
+              <Markdown
+                skipHtml
+                className={styles.postContent}
+                components={{
+                  code(props) {
+                    const { children, className } = props;
+                    const match = /language-(\w+)/.exec(className || "");
+
+                    return match ? (
+                      <SyntaxHighlighter
+                        PreTag="div"
+                        language={className?.split("-")[1]}
+                        style={oneDark}
+                      >
+                        {String(children).replace(/\n$/, "")}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code
+                        style={{
+                          fontSize: "0.9rem",
+                          backgroundColor: "rgb(40, 44, 52)",
+                          padding: "6px",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              >
                 {post.content}
               </Markdown>
             </article>
@@ -59,3 +92,8 @@ export default function Post() {
     </>
   );
 }
+
+Post.propTypes = {
+  children: PropTypes.string,
+  className: PropTypes.string,
+};
