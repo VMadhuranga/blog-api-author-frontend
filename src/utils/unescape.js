@@ -6,6 +6,7 @@ export default function unescape(string) {
     ["&#x27;", "'"],
     ["&quot;", '"'],
     ["&#x2F;", "/"],
+    ["&#96;", "`"],
   ];
 
   return characters.reduce(
