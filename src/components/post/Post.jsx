@@ -61,6 +61,15 @@ export default function Post() {
                       </code>
                     );
                   },
+                  a(props) {
+                    const { children, href } = props;
+
+                    return (
+                      <a href={href} target="_blank">
+                        {children}
+                      </a>
+                    );
+                  },
                 }}
               >
                 {post.content}
@@ -96,4 +105,5 @@ export default function Post() {
 Post.propTypes = {
   children: PropTypes.string,
   className: PropTypes.string,
+  href: PropTypes.string,
 };
